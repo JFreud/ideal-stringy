@@ -5,7 +5,7 @@
 int strleng(char *s) {
   int i = 0;
   while (s[i++]);
-  return i;
+  return i - 1;
 }
 
 char * strcopy( char *d, char *s ) {
@@ -27,25 +27,60 @@ char * sterncat( char *d, char *s, int n) {
 }
 
 
-int strcmp( char *s1, char *s2 ) {
-
-
+int strcomp( char *s1, char *s2 ) {
+  while (*s1 && *s2 && *s1 == *s2) {
+    s1++;
+    s2++;
+  }
+  return *s1 - *s2;
 }
+
+char * strchar( char *s, char c ) {
+  while(s) {
+    if (c == *s) {
+      return s;
+    }
+    s++;
+  }
+  return NULL;
+} 
 
 
 int main() {
   //strlen
+  printf("STRLEN:\n");
   printf("strlen of hey: %d\n", strleng("hey"));
 
   //strcopy
+  printf("STRCOPY:\n");
   char dest[30];
   char *p = strcopy(dest, "potato");
   printf("strcopy of dest1: %s\n", p);
   printf("strcopy of dest2: %s\n", dest);
-  printf("actual: %s\n", strcopy(dest, "potato"));
+  printf("actual: %s\n", strcpy(dest, "potato"));
   
   //sterncat
-  char deststrn[400] = "stern ";
+  printf("STRNCAT:\n");
+  char deststrn[400] = "stern";
   char *s = sterncat(deststrn, "kitty", 3);
   printf("our cat of stern and kit(kitty): %s\n", s);
+
+  //strcmp
+  printf("STRCMP:\n");
+  printf("Diff between cat and fog: %d\n", strcomp("cat", "fog"));
+  printf("Diff between horseshoe and horsedragon: %d\n", strcomp("horseshoe", "horsedragon"));
+  printf("Diff between horse and horse: %d\n", strcomp("horse", "horse"));
+
+  //strchr
+  printf("STRCHR:\n");
+  char str[] = "This is halloweens";
+  printf ("Looking for 's' in \"%s\"\n", str);
+  char * pstr = strchar(str, 's');
+  printf("The first 's' is at index: %ld\n", pstr - str);
+  char str2[] = "Hello";
+  printf ("Looking for 's' in \"%s\"\n", str2);
+  char * pstr2 = strchar(str2, 's');
+  printf("The first 's' is at index: %ld\n", pstr2 - str2);
+
+
 }
