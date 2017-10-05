@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int strleng(char *s) {
+unsigned long strleng(char *s) {
   int i = 0;
   while (s[i++]);
   return i - 1;
@@ -11,7 +11,8 @@ int strleng(char *s) {
 char * strcopy( char *d, char *s ) {
   int i = 0;
   while (s[i]) {
-    d[i] = s[i++];
+    d[i] = s[i];
+    i++;
   }
   return d;
 }
@@ -21,7 +22,8 @@ char * sterncat( char *d, char *s, int n) {
   unsigned int length = strleng(d) - 1;
   while (s[i] && i < n) {
     //printf("%c\n", s[i]);
-    d[i + length] = s[i++];
+    d[i + length + 1] = s[i];
+    i++;
   }
   return d;
 }
@@ -43,7 +45,7 @@ char * strchar( char *s, char c ) {
     s++;
   }
   return NULL;
-} 
+}
 
 
 int main() {
@@ -51,7 +53,7 @@ int main() {
   printf("OUR FUNCTIONS:\n\n");
   //strlen
   printf("STRLEN:\n");
-  printf("strlen of hey: %d\n", strleng("hey"));
+  printf("strlen of hey: %lu\n", strleng("hey"));
 
   //strcopy
   printf("STRCOPY:\n");
@@ -60,7 +62,7 @@ int main() {
   printf("strcopy of dest1: %s\n", p);
   printf("strcopy of dest2: %s\n", dest);
   printf("actual: %s\n", strcopy(dest, "potato"));
-  
+
   //sterncat
   printf("STRNCAT:\n");
   char deststrn[400] = "stern";
@@ -86,40 +88,40 @@ int main() {
 
 
   printf("\n\nBUILT-IN FUNCTIONS:\n\n");
-  
- //strlen
+
+  //STRLEN
   printf("STRLEN:\n");
-  printf("strlen of hey: %d\n", strlen("hey"));
+  printf("strlen of hey: %lu\n", strlen("hey"));
 
-  //strcopy
-  printf("STRCPY:\n");
-  char dest[30];
-  char *p = strcpy(dest, "potato");
-  printf("strcpy of dest1: %s\n", p);
-  printf("strcpy of dest2: %s\n", dest);
-  printf("actual: %s\n", strcpy(dest, "potato"));
-  
-  //sterncat
+  //strcpy
+  printf("STRCOPY:\n");
+  char destb[30];
+  char *pb = strcpy(destb, "potato");
+  printf("strcpy of dest1: %s\n", pb);
+  printf("strcpy of dest2: %s\n", destb);
+  printf("actual: %s\n", strcpy(destb, "potato"));
+
+  //STRNCAT
   printf("STRNCAT:\n");
-  char deststrn[400] = "stern";
-  char *s = strncat(deststrn, "kitty", 3);
-  printf("our cat of stern and kit(kitty): %s\n", s);
+  char deststrnb[400] = "stern";
+  char *sb = strncat(deststrnb, "kitty", 3);
+  printf("our cat of stern and kit(kitty): %s\n", sb);
 
-  //strcmp
+  //STRCMP
   printf("STRCMP:\n");
   printf("Diff between cat and fog: %d\n", strcmp("cat", "fog"));
   printf("Diff between horseshoe and horsedragon: %d\n", strcmp("horseshoe", "horsedragon"));
   printf("Diff between horse and horse: %d\n", strcmp("horse", "horse"));
 
-  //strchr
+  //STRCHR
   printf("STRCHR:\n");
-  char strb1[] = "This is halloweens";
+  char strb[] = "This is halloweens";
   printf ("Looking for 's' in \"%s\"\n", strb);
-  //char * pstr = strchr(str, 's');
-  printf("The first 's' is at index: %ld\n", pstr - strb);
-  char strb2[] = "Hello";
-  printf ("Looking for 's' in \"%s\"\n", str2);
-  //char * pstr2 = strchr(str2, 's');
-  printf("The first 's' is at index: %ld\n", pstr2 - str2);
+  char * pstrb = strchr(strb, 's');
+  printf("The first 's' is at index: %ld\n", pstrb - strb);
+  char str2b[] = "Hello";
+  printf ("Looking for 's' in \"%s\"\n", str2b);
+  char * pstr2b = strchr(str2b, 's');
+  printf("The first 's' is at index: %ld\n", pstr2b - str2b);
 
 }
