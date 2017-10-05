@@ -123,5 +123,5 @@ int main() {
   printf ("Looking for 's' in \"%s\"\n", str2b);
   char * pstr2b = strchr(str2b, 's');
   printf("The first 's' is at index: %ld\n", pstr2b - str2b);
-
+  return 0;
 }
