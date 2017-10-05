@@ -38,11 +38,14 @@ int strcomp( char *s1, char *s2 ) {
 }
 
 char * strchar( char *s, char c ) {
-  while(s) {
+  while(*s) {
     if (c == *s) {
       return s;
     }
     s++;
+  }
+  if (c == NULL) {
+    return s;
   }
   return NULL;
 }
@@ -85,6 +88,9 @@ int main() {
   printf ("Looking for 's' in \"%s\"\n", str2);
   char * pstr2 = strchar(str2, 's');
   printf("The first 's' is at index: %ld\n", pstr2 - str2);
+  //printf("null == p: %d\n", pstr2 == NULL);
+  pstr2 = strchar(str2, '\0');
+  printf("The first null char is at index: %ld\n", pstr2 - str2); 
 
 
   printf("\n\nBUILT-IN FUNCTIONS:\n\n");
@@ -123,5 +129,9 @@ int main() {
   printf ("Looking for 's' in \"%s\"\n", str2b);
   char * pstr2b = strchr(str2b, 's');
   printf("The first 's' is at index: %ld\n", pstr2b - str2b);
+  //printf("%ld\n", NULL - str2b);
+  //printf("%d\n", 'a' - 3);
+  pstr2 = strchr(str2, '\0');
+  printf("The first null char is at index: %ld\n", pstr2 - str2);
   return 0;
 }
