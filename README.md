@@ -2,4 +2,4 @@
 
 ![alt text][logo]
 
-[logo]: https://www.usnews.com/static/img/best-colleges-badge.svg "Logo of awesonme"
+[logo]: https://purlspatterns.files.wordpress.com/2012/08/001.jpg "Logo of awesonemocity"
